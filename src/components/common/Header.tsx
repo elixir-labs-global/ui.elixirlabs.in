@@ -4,10 +4,26 @@ import brandLogo from "@/assets/elixir-ui-logo.svg";
 import SearchComponent from "@/components/common/SearchComponent";
 import ThemeSwitch from "@/components/common/ThemeSwitch";
 import HeaderSocials from "@/components/common/HeaderSocials";
+import Link from "next/link";
+
+const mainNavigations = [
+  {
+    label: "Docs",
+    href: "/docs",
+  },
+  {
+    label: "Examples",
+    href: "/examples",
+  },
+  {
+    label: "Showcase",
+    href: "/showcase",
+  },
+];
 
 const Header: React.FC = () => {
   return (
-    <header className="container mx-auto px-4 h-[60px] flex items-center justify-between border-b">
+    <header className="container mx-auto px-4 h-[64px] flex items-center justify-between border-b">
       {/* left  */}
       <div className="flex items-center gap-8">
         <div className="flex items-center gap-1">
@@ -17,14 +33,16 @@ const Header: React.FC = () => {
         <div className="text-white/70">v1.0.0</div>
         <menu className="text-white/70">
           <ul className="flex items-center gap-4">
-            <li>Docs</li>
-            <li>Examples</li>
-            <li>Showcase</li>
+            {mainNavigations.map((item, idx) => (
+              <Link href={item.href} key={idx}>
+                <li>{item.label}</li>
+              </Link>
+            ))}
           </ul>
         </menu>
       </div>
       {/* right  */}
-      <div className="flex items-center gap-3">
+      <div className="flex items-center gap-3 text-white/70">
         {/* search  */}
         <SearchComponent />
         <span className="border h-5"></span>

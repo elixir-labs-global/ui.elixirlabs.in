@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import { Inter, Space_Grotesk } from "next/font/google";
 import "./globals.css";
 import Header from "@/components/common/Header";
-import SubHeeader from "@/components/common/SubHeader";
+import SubHeader from "@/components/common/SubHeader";
 import Footer from "@/components/common/Footer";
 
 // Font Configs
@@ -18,8 +18,7 @@ const spaceGrotesk = Space_Grotesk({
 
 export const metadata: Metadata = {
   title: "Elixir UI",
-  description:
-    "",
+  description: "",
   icons: {
     icon: "/favicon.png",
   },
@@ -36,8 +35,11 @@ export default function RootLayout({
         className={`${inter.variable} ${spaceGrotesk.variable} antialiased dark`}
       >
         <Header />
-        <SubHeeader />
-        {children}
+        <SubHeader />
+
+        <main className="container mx-auto px-4 min-h-[80vh] py-4">
+          {children}
+        </main>
         <Footer />
       </body>
     </html>

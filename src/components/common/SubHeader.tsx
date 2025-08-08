@@ -1,7 +1,13 @@
+"use client";
 import { IconBox, IconBrandSketch, IconRocket } from "@tabler/icons-react";
+import { usePathname } from "next/navigation";
 import React from "react";
 
 const SubHeader = () => {
+  const pathname = usePathname();
+
+  if (pathname === "/") return;
+
   return (
     <div className="container mx-auto px-4 h-[48] flex items-center justify-between border-b text-white/70">
       <div>
