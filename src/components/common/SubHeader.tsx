@@ -14,19 +14,21 @@ const navigations = [
     icon: <IconRocket size={18} />,
     label: "Overview",
     href: "/docs/overview/introduction",
+    match: "/docs/overview",
   },
   {
     icon: <IconBox size={18} />,
     label: "Components",
     href: "/docs/components/alert",
+    match: "/docs/components",
   },
   {
     icon: <IconLayout size={18} />,
     label: "Sections",
     comingSoon: true,
+    match: "/docs/sections",
   },
 ];
-
 const SubHeader = () => {
   const pathname = usePathname();
 
@@ -37,7 +39,7 @@ const SubHeader = () => {
       <div>
         <ul className="flex items-center gap-8 text-sm">
           {navigations.map((item, idx) => {
-            const isActive = pathname.startsWith(item.href || "");
+            const isActive = pathname.startsWith(item.match || "");
 
             return (
               <li key={idx} className="flex items-center gap-1">
