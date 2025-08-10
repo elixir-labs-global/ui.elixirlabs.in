@@ -22,7 +22,28 @@ export function getMdxHeadings(filePath: string): Heading[] {
 
   const headings: Heading[] = [];
 
+  // all headings
+  // visit(tree, "heading", (node: MdastHeading) => {
+  //   const text = node.children
+  //     .filter((n: Content): n is Text => n.type === "text")
+  //     .map((n) => n.value)
+  //     .join("");
+
+  //   const slug = text
+  //     .toLowerCase()
+  //     .replace(/[^\w]+/g, "-")
+  //     .replace(/(^-|-$)+/g, "");
+
+  //   headings.push({ title: text, href: `#${slug}` });
+  // });
+
+  // pick only h1 and h2
   visit(tree, "heading", (node: MdastHeading) => {
+    // Only process h1 and h2 headings
+    if (node.depth !== 1 && node.depth !== 2) {
+      return;
+    }
+
     const text = node.children
       .filter((n: Content): n is Text => n.type === "text")
       .map((n) => n.value)

@@ -1,6 +1,7 @@
 // app/docs/[slug]/page.tsx (or .tsx as per your routing)
 import React from "react";
 import DocsAside from "@/components/docs/DocsAside";
+import PrevAndNext from "@/components/docs/PrevAndNext";
 
 interface PageProps {
   params: { slug: string };
@@ -27,6 +28,7 @@ export default async function Page({ params }: PageProps) {
         <article>
           <MDXContent />
         </article>
+        <PrevAndNext />
       </div>
       <aside className="w-1/5">
         <DocsAside slug={`src/content/docs/components/${slug}.mdx`} />

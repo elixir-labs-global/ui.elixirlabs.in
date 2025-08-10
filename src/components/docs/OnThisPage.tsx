@@ -100,7 +100,7 @@ export default function OnThisPage({ sections }: { sections: Section[] }) {
               <ol className="mt-2 space-y-1 border-l border-neutral-700 pl-4 relative">
                 {/* Active item indicator */}
                 <div
-                  className="absolute left-0 w-0.5 bg-gradient-to-b from-blue-400 to-purple-500 transition-all duration-300 ease-out rounded-full"
+                  className="absolute left-0 w-0.75 bg-gradient-to-b from-purple-400 to-purple-500 transition-all duration-300 ease-out rounded-full"
                   style={{
                     top: `${getActiveItemPosition()}px`,
                     height: "22px",
@@ -118,7 +118,7 @@ export default function OnThisPage({ sections }: { sections: Section[] }) {
                           handleClick(item.href);
                         }}
                         className={`text-sm transition ${
-                          isActive
+                          isActive || (i === 0 && activeId === "")
                             ? "text-white"
                             : "text-neutral-400 hover:text-white"
                         }`}
