@@ -1,15 +1,34 @@
+{/* COMPONENT VIEW  */}
 import { OnThisPage } from "@/registry/on-this-page";
 import ComponentViewerBox from "../../views/ComponentViewerBox";
 
-<ComponentViewerBox background={false}>
+export const onThisPageCode = `import { OnThisPage } from "@/registry/on-this-page";
+
+<OnThisPage
+  sections={[
+    {
+      items: [
+        { title: "Introduction", href: "#introduction" },
+        { title: "information", href: "#unformation" },
+        { title: "info", href: "#info" },
+      ],
+    },
+  ]}
+  activeClassName="text-purple-400"
+  inactiveClassName="text-neutral-500 hover:text-white"
+  indicatorClassName="bg-purple-500"
+/>
+`;
+
+<ComponentViewerBox background={false} code={onThisPageCode}>
   <OnThisPage
     sections={[
       {
         items: [
-          { title: "Introduction", href: "#introduction" },
-          { title: "Usage", href: "#usage" },
-          { title: "Props", href: "#props" },
-        ],
+        { title: "Introduction", href: "#introduction" },
+        { title: "information", href: "#unformation" },
+        { title: "info", href: "#info" },
+      ],
       },
     ]}
     activeClassName="text-purple-400"
@@ -18,14 +37,31 @@ import ComponentViewerBox from "../../views/ComponentViewerBox";
   />
 </ComponentViewerBox>
 
-## Introduction
-
-Some intro text.
+{/* EXPLANATION VIEW  */}
+## Installation
+```bash
+npx shadcn@latest add http://ui.elixirlabs.in/registry/on-this-page.json
+```
 
 ## Usage
 
-Details about usage.
+Import the component and provide sections with items:
 
-## Props
+```tsx
+import { OnThisPage } from "@/registry/on-this-page";
+```
 
-Details about props.
+
+```tsx
+<OnThisPage
+  sections={[
+    {
+      items: [
+        { title: "Introduction", href: "#introduction" },
+        { title: "information", href: "#unformation" },
+        { title: "info", href: "#info" },
+      ],
+    },
+  ]}
+/>
+```

@@ -1,4 +1,5 @@
 "use client";
+import React from "react";
 import {
   IconBox,
   IconBrandSketch,
@@ -7,19 +8,19 @@ import {
 } from "@tabler/icons-react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import React from "react";
+import { docsNavigation } from "@/lib/docs-nav";
 
 const navigations = [
   {
     icon: <IconRocket size={18} />,
     label: "Overview",
-    href: "/docs/overview/introduction",
+    href: docsNavigation.overview[0].href,
     match: "/docs/overview",
   },
   {
     icon: <IconBox size={18} />,
     label: "Components",
-    href: "/docs/components/alert",
+    href: docsNavigation.components[0].href,
     match: "/docs/components",
   },
   {

@@ -80,8 +80,9 @@ article pre {
   overflow-x: auto;
   font-family: "Fira Code", monospace, monospace;
   font-size: 0.95rem;
-  margin: 1.5rem 0;
-  line-height: 1.4;
+  /* margin: 1.5rem 0; */
+  /* line-height: 1.4; */
+  margin-bottom: 1.5rem;
 }
 
 article pre code {

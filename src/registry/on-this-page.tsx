@@ -92,7 +92,7 @@ export function OnThisPage({
   };
 
   return (
-    <div className="hidden lg:block w-64 text-neutral-300">
+    <div className="hidden lg:block text-neutral-300">
       <nav className="space-y-4">
         {sections.map((section, index) => (
           <div key={index}>
