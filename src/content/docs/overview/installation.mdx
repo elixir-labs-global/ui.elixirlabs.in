@@ -1,25 +1,27 @@
+import CodeBlock from '../../views/CodeBlock'
+
 To get started with Elixir UI, follow these simple steps to set up the required dependencies and add components to your project.
 
 ---
 
 ## 1. Install Dependencies
 
-Elixir UI relies on Tailwind CSS for styling and Framer Motion for animations. Install them using npm or yarn:
 
-```bash
-npm install tailwindcss framer-motion
-```
+Make sure to <a target='_blank' href='https://ui.shadcn.com/docs/installation'>add shadcn in your project</a>
 
-If you don’t have Tailwind CSS configured yet, follow the official [Tailwind Installation Guide](https://tailwindcss.com/docs/installation) to set it up.
+OR
 
+Make sure Tailwind CSS, Framer Motion and clsx are installed:
+
+<CodeBlock language="html" code={"npm install tailwindcss framer-motion clsx"} />
 ---
 
-## 2. Add Elixir UI Components
+## 2. Add a Component
 
-You can add components either by:
+Use the CLI to add the Button component:
 
-- **Using the CLI:** Quickly pull components from the registry
+<CodeBlock language="html" code={"npx shadcn@latest add https://ui.elixirlabs.in/registry/button.json"} />
 
-  ```bash
-  npx shadcn@latest add https://ui.elixirlabs.in/registry/button.json
-  ```
+Or copy-paste the Button code from the registry.
+
+---
