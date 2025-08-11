@@ -39,13 +39,11 @@ export default async function Page({ params }: PageProps) {
   );
 }
 
-// export function generateStaticParams() {
-//   return [
-//     { slug: "welcome" },
-//     { slug: "about" },
-//     { slug: "button" },
-//     { slug: "alert" },
-//   ];
-// }
+export function generateStaticParams() {
+  return [
+    { slug: "button" },
+    { slug: "alert" },
+  ];
+}
 
 export const dynamicParams = false;
