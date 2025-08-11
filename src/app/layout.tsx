@@ -1,6 +1,9 @@
 import type { Metadata } from "next";
 import { Inter, Space_Grotesk } from "next/font/google";
 import "./globals.css";
+import Header from "@/components/common/Header";
+import SubHeader from "@/components/common/SubHeader";
+import Footer from "@/components/common/Footer";
 
 // Font Configs
 const inter = Inter({
@@ -14,9 +17,8 @@ const spaceGrotesk = Space_Grotesk({
 });
 
 export const metadata: Metadata = {
-  title: "Elixir UI - Modern components, super fast shipment",
-  description:
-    "Elixir UI is a modern component library for React. Modern components, super fast shipment.",
+  title: "Elixir UI",
+  description: "",
   icons: {
     icon: "/favicon.png",
   },
@@ -30,9 +32,15 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body
-        className={`${inter.variable} ${spaceGrotesk.variable} antialiased`}
+        className={`${inter.variable} ${spaceGrotesk.variable} antialiased dark`}
       >
-        {children}
+        <Header />
+        <SubHeader />
+
+        <main className="container mx-auto px-4 min-h-[80vh] py-4">
+          {children}
+        </main>
+        <Footer />
       </body>
     </html>
   );
