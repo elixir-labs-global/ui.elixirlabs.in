@@ -39,13 +39,13 @@ export default async function Page({ params }: DocsPageProps) {
   );
 }
 
-// export function generateStaticParams() {
-//   return [
-//     { slug: "welcome" },
-//     { slug: "about" },
-//     { slug: "button" },
-//     { slug: "alert" },
-//   ];
-// }
+export function generateStaticParams() {
+  return [
+    { slug: "introduction" },
+    { slug: "getting-started" },
+    { slug: "installation" },
+    { slug: "releases" },
+  ];
+}
 
 export const dynamicParams = false;
