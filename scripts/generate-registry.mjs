@@ -3,7 +3,7 @@ import path from "path";
 import prettier from "prettier";
 
 const SRC_DIR = path.join(process.cwd(), "src", "registry");
-const OUT_DIR = path.join(process.cwd(), "public", "registry");
+const OUT_DIR = path.join(process.cwd(), "public", "r");
 
 // Author and project metadata
 const AUTHOR_INFO = {
