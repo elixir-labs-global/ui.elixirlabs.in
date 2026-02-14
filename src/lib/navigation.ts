@@ -31,19 +31,23 @@ export async function generateDocsNavigation(): Promise<NavSection[]> {
   // Auto-generate components section from registry
   try {
     const registryPath = path.join(process.cwd(), "public", "r", "index.json");
-    
+
     if (fs.existsSync(registryPath)) {
       const registryData = JSON.parse(fs.readFileSync(registryPath, "utf8"));
-      
+
       if (registryData.components && Array.isArray(registryData.components)) {
         // Group components by category
         const categories = registryData.categories || {};
         const componentsByCategory: Record<string, NavItem[]> = {};
 
         // Organize components by category
-        registryData.components.forEach((component: any) => {
+        interface RegistryComponent {
+          name: string;
+          category?: string;
+        }
+        registryData.components.forEach((component: RegistryComponent) => {
           const category = component.category || "other";
-          
+
           if (!componentsByCategory[category]) {
             componentsByCategory[category] = [];
           }
@@ -52,7 +56,7 @@ export async function generateDocsNavigation(): Promise<NavSection[]> {
           const docPath = path.join(
             process.cwd(),
             "src/content/docs/components",
-            `${component.name}.mdx`
+            `${component.name}.mdx`,
           );
 
           if (fs.existsSync(docPath)) {
@@ -76,27 +80,31 @@ export async function generateDocsNavigation(): Promise<NavSection[]> {
     } else {
       // Fallback: scan docs directory if registry doesn't exist
       const docsPath = path.join(process.cwd(), "src/content/docs/components");
-      
+
       if (fs.existsSync(docsPath)) {
-        const files = fs.readdirSync(docsPath).filter(f => f.endsWith(".mdx"));
-        
+        const files = fs
+          .readdirSync(docsPath)
+          .filter((f) => f.endsWith(".mdx"));
+
         if (files.length > 0) {
           navigation.push({
             title: "Components",
-            items: files.map(file => {
-              const name = file.replace(".mdx", "");
-              return {
-                title: formatComponentName(name),
-                href: `/docs/components/${name}`,
-              };
-            }).sort((a, b) => a.title.localeCompare(b.title)),
+            items: files
+              .map((file) => {
+                const name = file.replace(".mdx", "");
+                return {
+                  title: formatComponentName(name),
+                  href: `/docs/components/${name}`,
+                };
+              })
+              .sort((a, b) => a.title.localeCompare(b.title)),
           });
         }
       }
     }
   } catch (error) {
     console.error("Error generating navigation:", error);
-    
+
     // Fallback to empty components section
     navigation.push({
       title: "Components",

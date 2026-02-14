@@ -31,19 +31,23 @@ export function getDocsNavigation(): NavigationItem[] {
   // Auto-generate components section from registry
   try {
     const registryPath = path.join(process.cwd(), "public", "r", "index.json");
-    
+
     if (fs.existsSync(registryPath)) {
       const registryData = JSON.parse(fs.readFileSync(registryPath, "utf8"));
-      
+
       if (registryData.components && Array.isArray(registryData.components)) {
         // Group components by category
         const categories = registryData.categories || {};
         const componentsByCategory: Record<string, NavItem[]> = {};
 
         // Organize components by category
-        registryData.components.forEach((component: any) => {
+        interface RegistryComponent {
+          name: string;
+          category?: string;
+        }
+        registryData.components.forEach((component: RegistryComponent) => {
           const category = component.category || "other";
-          
+
           if (!componentsByCategory[category]) {
             componentsByCategory[category] = [];
           }
@@ -52,7 +56,7 @@ export function getDocsNavigation(): NavigationItem[] {
           const docPath = path.join(
             process.cwd(),
             "src/content/docs/components",
-            `${component.name}.mdx`
+            `${component.name}.mdx`,
           );
 
           if (fs.existsSync(docPath)) {

@@ -1,4 +1,5 @@
 import React from "react";
+import Image from "next/image";
 import Link from "next/link";
 import {
   IconArrowRight,
@@ -358,9 +359,11 @@ export default function Home() {
                 {/* Author */}
                 <div className="flex items-center space-x-4">
                   <div className="relative">
-                    <img
+                    <Image
                       src={testimonial.avatar}
                       alt={testimonial.name}
+                      width={48}
+                      height={48}
                       className="w-12 h-12 rounded-full border border-neutral-700"
                     />
                     <div className="absolute inset-0 rounded-full bg-gradient-to-r from-purple-500/20 to-blue-500/20"></div>

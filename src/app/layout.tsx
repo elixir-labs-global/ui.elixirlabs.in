@@ -2,7 +2,6 @@ import type { Metadata } from "next";
 import { Inter, Space_Grotesk } from "next/font/google";
 import "./globals.css";
 import Header from "@/components/common/Header";
-import SubHeader from "@/components/common/SubHeader";
 import Footer from "@/components/common/Footer";
 
 // Font Configs
@@ -37,9 +36,7 @@ export default function RootLayout({
         <Header />
         {/* <SubHeader /> */}
 
-        <main className="container mx-auto min-h-[80vh]">
-          {children}
-        </main>
+        <main className="container mx-auto min-h-[80vh]">{children}</main>
         <Footer />
       </body>
     </html>
