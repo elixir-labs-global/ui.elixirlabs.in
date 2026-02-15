@@ -86,10 +86,10 @@ const SearchModal: React.FC<SearchModalProps> = ({ isOpen, onClose }) => {
 
   return (
     <div
-      className="fixed inset-0 z-50 min-h-screen flex items-start justify-center pt-[15vh]"
+      className="fixed inset-0 z-[100] min-h-screen flex items-start justify-center pt-[15vh]"
       onClick={onClose}
     >
-      <div className="fixed inset-0 bg-black/50 backdrop-blur-lg z-40" />
+      <div className="fixed inset-0 bg-black/60 backdrop-blur-2xl z-40 pointer-events-none" />
       <div
         className="relative z-50 bg-[#0a0a0a] border border-gray-500/20 rounded-xl shadow-2xl w-full max-w-lg mx-4 overflow-hidden"
         onClick={(e) => e.stopPropagation()}
