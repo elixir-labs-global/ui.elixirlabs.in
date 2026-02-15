@@ -65,7 +65,7 @@ const Hero = () => {
           </p>
 
           <div className="flex flex-col sm:flex-row items-center justify-center gap-4 mb-12">
-            <Link href="/docs/overview/installation">
+            <Link href="/docs">
               <Button size="lg">
                 Getting Started
                 <IconArrowRight size={20} />
