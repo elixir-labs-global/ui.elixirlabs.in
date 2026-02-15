@@ -1,9 +1,14 @@
-import React from 'react'
+import { DocsPage } from "@/components/docs/DocsPage";
+import { getDocBySlug } from "@/lib/docs";
+import React from "react";
 
-const page = () => {
+const page = async () => {
+  const doc = await getDocBySlug("/introduction");
   return (
-    <div>Introduction</div>
-  )
-}
+    <>
+      <DocsPage content={doc?.content || "Content not found"} />
+    </>
+  );
+};
 
-export default page
+export default page;

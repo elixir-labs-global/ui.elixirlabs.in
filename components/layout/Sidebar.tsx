@@ -1,7 +1,7 @@
 "use client";
 import React from "react";
 import Link from "next/link";
-import { docsNavigation } from "@/lib/docs-nav";
+import { docsNavigation } from "@/lib/docs-navs";
 import { ScrollArea } from "@/components/ui/scroll-area";
 import { usePathname } from "next/navigation";
 
@@ -18,11 +18,11 @@ const Sidebar = () => {
               </div>
               <ul className="space-y-1 pl-2 border-l border-sidebar-border">
                 {section.items.map((item) => {
-                  const isActive = pathname === item.href;
+                  const isActive = pathname === item.slug;
                   return (
-                    <li key={item.href}>
+                    <li key={item.slug}>
                       <Link
-                        href={item.href}
+                        href={item.slug}
                         className={
                           `block rounded px-2 py-1 text-sm transition-colors ` +
                           (isActive

@@ -1,7 +1,7 @@
 "use client";
 import { IconFile, IconSearch, IconX } from "@tabler/icons-react";
 import React, { useEffect, useState, useMemo } from "react";
-import { docsNavigation, NavItem } from "@/lib/docs-nav";
+import { docsNavigation, NavItem } from "@/lib/docs-navs";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
 
@@ -54,7 +54,7 @@ const SearchModal: React.FC<SearchModalProps> = ({ isOpen, onClose }) => {
         case "Enter":
           e.preventDefault();
           if (filteredItems[selectedIndex]) {
-            router.push(`${filteredItems[selectedIndex].href}`);
+            router.push(`${filteredItems[selectedIndex].slug}`);
             // window.location.href = filteredItems[selectedIndex].href;
             onClose();
           }
@@ -119,7 +119,7 @@ const SearchModal: React.FC<SearchModalProps> = ({ isOpen, onClose }) => {
             <div className="py-3 space-y-2">
               {filteredItems.map((item, index) => (
                 <Link
-                  href={item.href}
+                  href={item.slug}
                   key={index}
                   onClick={() => {
                     onClose();
@@ -136,7 +136,7 @@ const SearchModal: React.FC<SearchModalProps> = ({ isOpen, onClose }) => {
                   />
                   <span className="truncate">{item.label}</span>
                   <span className="ml-auto text-xs text-gray-500/70 pl-3">
-                    {item.href.replace("/docs/", "").replace("/", " › ")}
+                    {item.slug.replace("/docs/", "").replace("/", " › ")}
                   </span>
                 </Link>
               ))}

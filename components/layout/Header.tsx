@@ -5,7 +5,7 @@ import SearchComponent from "@/components/common/SearchComponent";
 import ThemeSwitch from "@/components/common/ThemeSwitch";
 import HeaderSocials from "@/components/common/HeaderSocials";
 import Link from "next/link";
-import { docsNavigation } from "@/lib/docs-nav";
+import { docsNavigation } from "@/lib/docs-navs";
 
 const mainNavigations = [
   {
@@ -14,7 +14,7 @@ const mainNavigations = [
   },
   {
     label: "Components",
-    href: `${docsNavigation[1].items[0].href}`,
+    href: `${docsNavigation[1].items[0].slug}`,
   },
 ];
 
