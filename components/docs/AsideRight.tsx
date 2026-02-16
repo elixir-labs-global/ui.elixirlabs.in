@@ -59,7 +59,11 @@ function AdPlaceholder() {
   );
 }
 
-function AsideRight({ headings }: { headings: any}) {
+function AsideRight({
+  headings,
+}: {
+  headings: { level: number; text: string; slug: string }[];
+}) {
   return (
     <aside
       className="
