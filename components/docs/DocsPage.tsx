@@ -1,18 +1,7 @@
-import React from "react";
-import { DocsPageContent } from "./DocsPageContent";
 import { AsideRight } from "./AsideRight";
-import { docsNavigation } from "../../lib/docs-navs";
+import { DocsPageContent } from "./DocsPageContent";
 import DocsPrevNextButtons from "./DocsPrevNextButtons";
-
-interface Doc {
-  slug: string;
-  label: string;
-  description: string;
-  content: React.ReactNode;
-  headings: { level: number; text: string; slug: string }[];
-  prev?: any;
-  next?: any;
-}
+import { Doc } from "@/types/docs";
 
 const DocsPage = ({ doc }: { doc: Doc }) => {
   return (

@@ -1,7 +1,13 @@
 import React from "react";
 import Link from "next/link";
 
-const DocsPrevNextButtons = ({ prev, next }: { prev?: any; next?: any }) => {
+const DocsPrevNextButtons = ({
+  prev,
+  next,
+}: {
+  prev?: { label: string; slug: string } | null;
+  next?: { label: string; slug: string } | null;
+}) => {
   return (
     <nav className="flex justify-between max-w-3xl mx-auto w-full py-8 px-6">
       {prev ? (
