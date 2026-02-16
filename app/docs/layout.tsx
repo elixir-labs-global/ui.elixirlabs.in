@@ -49,6 +49,7 @@ export default function DocsLayout({
         className="
           min-h-screen
           pt-10
+          pb-10
           px-6
           md:pl-76
           xl:pr-80
