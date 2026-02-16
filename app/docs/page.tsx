@@ -4,7 +4,7 @@ import DocsPage from "@/components/docs/DocsPage";
 import { getDocBySlug } from "@/lib/docs";
 
 const page = async () => {
-  const doc = await getDocBySlug("/introduction");
+  const doc = await getDocBySlug("introduction");
 
   if (!doc) {
     notFound();

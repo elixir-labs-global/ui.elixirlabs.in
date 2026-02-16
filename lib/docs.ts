@@ -3,6 +3,7 @@ import path from "path";
 import matter from "gray-matter";
 import { compileMDX } from "next-mdx-remote/rsc";
 import { mdxComponents } from "@/content/views";
+import { docsNavigation } from "@/lib/docs-navs";
 
 const docsDirectory = path.join(process.cwd(), "content/docs");
 
@@ -26,12 +27,23 @@ export async function getDocBySlug(slug: string) {
 
   const headings = extractHeadings(content);
 
+  // Navigation logic
+  const navItems = docsNavigation.flatMap((section) => section.items);
+  const currentIndex = navItems.findIndex(
+    (item) => item.slug === realSlug || item.slug === `/docs/${realSlug}`,
+  );
+  const prev = currentIndex > 0 ? navItems[currentIndex - 1] : null;
+  const next =
+    currentIndex < navItems.length - 1 ? navItems[currentIndex + 1] : null;
+
   return {
     slug: realSlug,
     label: data.label,
     description: data.description || "",
     content: mdxContent,
     headings,
+    prev,
+    next,
   };
 }
 
