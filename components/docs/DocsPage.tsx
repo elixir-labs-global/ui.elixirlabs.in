@@ -4,7 +4,7 @@ import { AsideRight } from "./AsideRight";
 
 const DocsPage = ({ doc }: any) => {
   return (
-    <main className="min-h-screen px-6 md:pl-64 flex">
+    <main className="min-h-screen md:pl-64 flex">
       {/* Content */}
       <DocsPageContent content={doc.content} />
 
