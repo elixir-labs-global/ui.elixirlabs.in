@@ -2,13 +2,13 @@
 
 import React from "react";
 import { Moon, Sun, ArrowLeft, Maximize2, Minimize2 } from "lucide-react";
-import { useTheme } from "../contexts/ThemeContext";
-import { usePlaygroundState } from "../contexts/StateContext";
 import { useRouter } from "next/navigation";
+import { usePlaygroundState } from "@/contexts/PlaygroundStateContext";
 
 const PlaygroundHeader = () => {
-  const { dark, toggleTheme } = useTheme();
   const {
+    dark,
+    toggleTheme,
     fullWidth,
     toggleFullWidth,
     verticalAlign,
@@ -49,7 +49,7 @@ const PlaygroundHeader = () => {
           </button>
 
           <h1 className="font-semibold text-lg tracking-tight">
-            Component Lab
+            Elixir Component Lab
           </h1>
         </div>
 

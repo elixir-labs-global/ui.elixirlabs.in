@@ -16,43 +16,50 @@ interface StateContextType {
   setHorizontalAlign: (h: HorizontalAlign) => void;
   boxColor: string;
   setBoxColor: (color: string) => void;
+  dark: boolean;
+  toggleTheme: () => void;
 }
 
 const StateContext = createContext<StateContextType | null>(null);
 
 export const StateProvider = ({ children }: { children: React.ReactNode }) => {
-  const [playgroundState, setPlaygroundState] = React.useState(() => {
-    if (typeof window !== "undefined") {
-      const vAlign = localStorage.getItem("playground-vertical-align");
-      const hAlign = localStorage.getItem("playground-horizontal-align");
-      return {
-        boxColor: localStorage.getItem("playground-box-color") || "#ef4444",
-        showHeader:
-          localStorage.getItem("playground-show-header") === null
-            ? true
-            : localStorage.getItem("playground-show-header") === "true",
-        fullWidth: localStorage.getItem("playground-fullwidth") === "true",
-        verticalAlign:
-          vAlign === "top" || vAlign === "center" || vAlign === "bottom"
-            ? vAlign
-            : "center",
-        horizontalAlign:
-          hAlign === "left" || hAlign === "center" || hAlign === "right"
-            ? hAlign
-            : "center",
-      };
-    }
-    return {
-      boxColor: "#ef4444",
-      showHeader: true,
-      fullWidth: false,
-      verticalAlign: "center",
-      horizontalAlign: "center",
-    };
+  const [hasHydrated, setHasHydrated] = React.useState(false);
+  const [playgroundState, setPlaygroundState] = React.useState({
+    boxColor: "#f4f4f5",
+    showHeader: true,
+    fullWidth: false,
+    verticalAlign: "center" as VerticalAlign,
+    horizontalAlign: "center" as HorizontalAlign,
+    dark: false,
   });
+
+  React.useEffect(() => {
+    const vAlign = localStorage.getItem("playground-vertical-align");
+    const hAlign = localStorage.getItem("playground-horizontal-align");
+    const theme = localStorage.getItem("playground-theme");
+    setPlaygroundState({
+      boxColor: localStorage.getItem("playground-box-color") || "#f4f4f5",
+      showHeader:
+        localStorage.getItem("playground-show-header") === null
+          ? true
+          : localStorage.getItem("playground-show-header") === "true",
+      fullWidth: localStorage.getItem("playground-fullwidth") === "true",
+      verticalAlign:
+        vAlign === "top" || vAlign === "center" || vAlign === "bottom"
+          ? (vAlign as VerticalAlign)
+          : "center",
+      horizontalAlign:
+        hAlign === "left" || hAlign === "center" || hAlign === "right"
+          ? (hAlign as HorizontalAlign)
+          : "center",
+      dark: theme === "dark" ? true : false,
+    });
+    setHasHydrated(true);
+  }, []);
 
   // Sync with localStorage on state change
   React.useEffect(() => {
+    if (!hasHydrated) return;
     localStorage.setItem("playground-box-color", playgroundState.boxColor);
     localStorage.setItem(
       "playground-show-header",
@@ -70,7 +77,11 @@ export const StateProvider = ({ children }: { children: React.ReactNode }) => {
       "playground-horizontal-align",
       playgroundState.horizontalAlign,
     );
-  }, [playgroundState]);
+    localStorage.setItem(
+      "playground-theme",
+      playgroundState.dark ? "dark" : "light",
+    );
+  }, [playgroundState, hasHydrated]);
 
   // Setters
   const toggleHeader = () => {
@@ -88,7 +99,11 @@ export const StateProvider = ({ children }: { children: React.ReactNode }) => {
   const setBoxColor = (color: string) => {
     setPlaygroundState((prev) => ({ ...prev, boxColor: color }));
   };
+  const toggleTheme = () => {
+    setPlaygroundState((prev) => ({ ...prev, dark: !prev.dark }));
+  };
 
+  if (!hasHydrated) return null;
   return (
     <StateContext.Provider
       value={{
@@ -102,6 +117,8 @@ export const StateProvider = ({ children }: { children: React.ReactNode }) => {
         setHorizontalAlign,
         boxColor: playgroundState.boxColor,
         setBoxColor,
+        dark: playgroundState.dark,
+        toggleTheme,
       }}
     >
       {children}

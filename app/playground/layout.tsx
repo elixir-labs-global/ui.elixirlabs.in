@@ -1,10 +1,12 @@
 "use client";
 
 import React from "react";
-import PlaygroundHeader from "./components/PlaygroundHeader";
-import { ThemeProvider } from "./contexts/ThemeContext";
-import { StateProvider, usePlaygroundState } from "./contexts/StateContext";
+import {
+  StateProvider,
+  usePlaygroundState,
+} from "../../contexts/PlaygroundStateContext";
 import { ChevronUp, ChevronDown } from "lucide-react";
+import PlaygroundHeader from "@/components/playground/PlaygroundHeader";
 
 function PlaygroundShell({ children }: { children: React.ReactNode }) {
   const {
@@ -75,10 +77,8 @@ export default function PlaygroundLayout({
   children: React.ReactNode;
 }) {
   return (
-    <ThemeProvider>
-      <StateProvider>
-        <PlaygroundShell>{children}</PlaygroundShell>
-      </StateProvider>
-    </ThemeProvider>
+    <StateProvider>
+      <PlaygroundShell>{children}</PlaygroundShell>
+    </StateProvider>
   );
 }
