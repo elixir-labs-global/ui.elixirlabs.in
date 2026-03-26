@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
 import Header from "@/components/layout/Header";
+import Script from "next/script";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -33,6 +34,18 @@ export default function RootLayout({
       >
         <Header />
         {children}
+        {/* Tars Widget */}
+        <Script id="tars-settings" strategy="afterInteractive">
+          {`
+            window.tarsSettings = {"convid":"DZHA_H"};
+          `}
+        </Script>
+
+        <Script
+          id="tars-widget"
+          src="https://tars-file-upload.s3.amazonaws.com/bulb/js/widget.js"
+          strategy="afterInteractive"
+        />
       </body>
     </html>
   );
